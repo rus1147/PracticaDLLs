@@ -6,7 +6,12 @@ using System.Threading.Tasks;
 
 namespace ScannerModelB
 {
-    public class ScannerModelB
+    public class ScannerB
     {
+        internal bool estadoScannerB;
+        public void Initialize()
+        {
+            estadoScannerB = true;
+        }
     }
 }

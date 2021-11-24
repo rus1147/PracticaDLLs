@@ -13,7 +13,7 @@ namespace Practica1
     {
         static void Main(string[] args)
         {
-            Scanner scannerA = new Scanner();
+            ScannerA scannerA = new ScannerA();
             Random random = new Random();
             //scannerA. calidadImagen = scannerA.randomDPI();
             int quantity = random.Next(0, 9);
@@ -38,6 +38,9 @@ namespace Practica1
                 scannerA.DeleteImagenes(scannerA.randomDPI());
                 Console.WriteLine("Imagenes eliminadas");
             }
+
+            //scannerB
+            ScannerB scannerModelB = new ScannerB();
         }
     }
 }
