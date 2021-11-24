@@ -1,0 +1,9 @@
+C:\Users\Ruslan\Programacion\academina BNA\Practica1\Practica1\Item1\bin\Debug\Item1.dll
+C:\Users\Ruslan\Programacion\academina BNA\Practica1\Practica1\Item1\bin\Debug\Item1.pdb
+C:\Users\Ruslan\Programacion\academina BNA\Practica1\Practica1\Item1\bin\Debug\Scanner.dll
+C:\Users\Ruslan\Programacion\academina BNA\Practica1\Practica1\Item1\bin\Debug\Scanner.pdb
+C:\Users\Ruslan\Programacion\academina BNA\Practica1\Practica1\Item1\obj\Debug\ScannerModelA.csproj.AssemblyReference.cache
+C:\Users\Ruslan\Programacion\academina BNA\Practica1\Practica1\Item1\obj\Debug\ScannerModelA.csproj.CoreCompileInputs.cache
+C:\Users\Ruslan\Programacion\academina BNA\Practica1\Practica1\Item1\obj\Debug\ScannerModelA.csproj.CopyComplete
+C:\Users\Ruslan\Programacion\academina BNA\Practica1\Practica1\Item1\obj\Debug\Item1.dll
+C:\Users\Ruslan\Programacion\academina BNA\Practica1\Practica1\Item1\obj\Debug\Item1.pdb

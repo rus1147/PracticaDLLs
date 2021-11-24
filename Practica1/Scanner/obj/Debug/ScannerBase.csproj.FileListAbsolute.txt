@@ -1,0 +1,6 @@
+C:\Users\Ruslan\Programacion\academina BNA\Practica1\Practica1\Scanner\bin\Debug\Scanner.dll
+C:\Users\Ruslan\Programacion\academina BNA\Practica1\Practica1\Scanner\bin\Debug\Scanner.pdb
+C:\Users\Ruslan\Programacion\academina BNA\Practica1\Practica1\Scanner\obj\Debug\ScannerBase.csproj.CoreCompileInputs.cache
+C:\Users\Ruslan\Programacion\academina BNA\Practica1\Practica1\Scanner\obj\Debug\Scanner.dll
+C:\Users\Ruslan\Programacion\academina BNA\Practica1\Practica1\Scanner\obj\Debug\Scanner.pdb
+C:\Users\Ruslan\Programacion\academina BNA\Practica1\Practica1\Scanner\obj\Debug\ScannerBase.csproj.AssemblyReference.cache
