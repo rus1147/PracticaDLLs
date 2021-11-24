@@ -15,7 +15,7 @@ namespace Practica1
         {
             Scanner scannerA = new Scanner();
             Random random = new Random();
-             
+            //scannerA. calidadImagen = scannerA.randomDPI();
             int quantity = random.Next(0, 9);
             if(quantity == 0) {
                 Console.WriteLine(scannerA.statusError);
@@ -30,7 +30,13 @@ namespace Practica1
             else 
             {
                 Console.WriteLine(scannerA.statusError);
-
+            }
+            Console.WriteLine("Desea borrar imagenes scanneadas ? \n y/n ?");
+            string borrar = Console.ReadLine();
+            if (borrar == "y")
+            {
+                scannerA.DeleteImagenes(scannerA.randomDPI());
+                Console.WriteLine("Imagenes eliminadas");
             }
         }
     }

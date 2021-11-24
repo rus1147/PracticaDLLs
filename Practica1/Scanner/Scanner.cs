@@ -13,9 +13,9 @@ namespace ScannerBase
         public ResolutionFormat _imageDpi;
         public ImgFormt_JPG_or_PNG _imageFormat;
         public enum ImgFormt_JPG_or_PNG { JPG, PNG }
-        public enum ResolutionFormat { DPI_100, DPI_200, DPI_300 }
+        public  enum ResolutionFormat { DPI_100, DPI_200, DPI_300 }
 
-        public static string carpetaCheques = $"C:\\Users\\Ruslan\\Programacion\\academina BNA\\Practica1\\Img_Cheques\\";
+        public static string carpetaCheques = $"C:\\Users\\Ruslan\\Programacion\\academina BNA\\Practica1\\PracticaDLLs\\Practica1\\Img_Cheques\\";
 
 
         public string CopyImage(ImgFormt_JPG_or_PNG format, ResolutionFormat reso, int quantity)
@@ -126,7 +126,7 @@ namespace ScannerBase
         {
             get
             {
-                return _destinationDirectory = $"C:\\Users\\Ruslan\\Programacion\\academina BNA\\Practica1\\DestinoImg";
+                return _destinationDirectory = $"C:\\Users\\Ruslan\\Programacion\\academina BNA\\Practica1\\PracticaDLLs\\Practica1\\DestinoImg";
             }
 
             set
@@ -153,6 +153,17 @@ namespace ScannerBase
             }
         }
 
+        public void DeleteImagenes(ResolutionFormat reso)
+        {
+            string backupDir = DestinationDirectory + "\\" + reso.ToString();
+            //string[] picList = Directory.GetFiles(backupDir);
+            DirectoryInfo dir = new DirectoryInfo(backupDir);
+
+            foreach (FileInfo fi in dir.GetFiles())
+            {
+                fi.Delete();
+            }
+        }
     }
 
 
