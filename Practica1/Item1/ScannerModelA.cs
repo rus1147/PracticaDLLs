@@ -35,19 +35,6 @@ namespace ScannerModelA
             }
         }
 
-        public string DestinationDirectory
-        {
-            get
-            {
-                return _destinationDirectory;
-            }
-
-            set
-            {
-                _destinationDirectory = value;
-            }
-        }
-
         public string[] MultiScan(ImgFormt_JPG_or_PNG format, ResolutionFormat resolution, int quantity)
         {
             List<string> lista = new List<string>();

@@ -84,6 +84,18 @@ namespace ScannerBase
             return _imageFormat;
         }
 
+        public string DestinationDirectory
+        {
+            get
+            {
+                return _destinationDirectory;
+            }
+
+            set
+            {
+                _destinationDirectory = value;
+            }
+        }
         public void DeleteImagenes(ResolutionFormat reso)
         {
             string backupDir = _destinationDirectory + "\\" + reso.ToString(); 
