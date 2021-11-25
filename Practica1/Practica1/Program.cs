@@ -13,14 +13,18 @@ namespace Practica1
     {
         static void Main(string[] args)
         {
+            Random random = new Random();
+            int quantity = random.Next(0, 9);
             Console.WriteLine("Ejecutar item 1 o item 2, ingrese 1/ 2 : ");
-            int item= Console.Read();
-            if (item == 1)
+            string item= Console.ReadLine();
+            if (item == "1")
             {
                 ScannerA scannerA = new ScannerA();
-                Random random = new Random();
+               
+
+                
                 //scannerA. calidadImagen = scannerA.randomDPI();
-                int quantity = random.Next(0, 9);
+                
                 if (quantity == 0)
                 {
                     Console.WriteLine(scannerA.statusError);
@@ -46,15 +50,35 @@ namespace Practica1
             }
             else
             {
-                //scannerB
                 ScannerB scannerB = new ScannerB();
-                scannerB.Initialize();
-                //string sourceDir = @carpetaCheques + scannerModelB.ImageRes.ToString();
-                //string[] picList = sc.GetFiles(sourceDir, "*.JPG");
 
-                //string file = picList[quantity];
-              
-                Console.WriteLine(scannerB.ExecuteScanB(scannerB.randomDPI()).ToString());
+                scannerB.Initialize();
+
+                if (quantity == 0)
+                {
+                    Console.WriteLine(scannerB.statusError);
+                }
+                else if (scannerB.TestScan())
+                {
+                    int cantidadScanns = quantity;
+                    Console.WriteLine("Cantidad de escaneos solitados es de: {0}", cantidadScanns);
+                    scannerB.MultiScan(scannerB.randomFormat(), scannerB.randomDPI(), cantidadScanns);
+                    scannerB.Close();
+                }
+                else
+                {
+                    Console.WriteLine(scannerB.statusError);
+                }
+
+                //No se porque no funciona, usa el valor borrar2 el primer readline que tiene la opcion 2
+                Console.WriteLine("Desea borrar imagenes scanneadas ? \n y/n ?");
+                string borrar2 =  Console.ReadLine();
+                if (borrar2 == "y")
+                {
+                    scannerB.DeleteImagenes(scannerB.randomDPI());
+                    Console.WriteLine("Imagenes eliminadas");
+                }
+
             }
         }
     }
