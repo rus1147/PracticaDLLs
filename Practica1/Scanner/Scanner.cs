@@ -11,13 +11,13 @@ namespace ScannerBase
 
         public static string _destinationDirectory = $"C:\\Users\\Ruslan\\Programacion\\academina BNA\\Practica1\\PracticaDLLs\\Practica1\\DestinoImg";
         public ResolutionFormat _imageDpi;
-        public ImgFormt_JPG_or_PNG _imageFormat;
-        public enum ImgFormt_JPG_or_PNG { JPG, PNG }
+        public ImgFormt2 _imageFormat;
+        public enum ImgFormt2 { JPG, PNG }
         public  enum ResolutionFormat { DPI_100, DPI_200, DPI_300 }
 
         public static string carpetaCheques = $"C:\\Users\\Ruslan\\Programacion\\academina BNA\\Practica1\\PracticaDLLs\\Practica1\\Img_Cheques\\";
 
-        public string CopyImage(ImgFormt_JPG_or_PNG format, ResolutionFormat reso)
+        public string CopyImage(ImgFormt2 format, ResolutionFormat reso)
         {
             string sourceDir = @carpetaCheques + reso.ToString();
             string backupDir = _destinationDirectory + "\\" + reso.ToString();
@@ -31,13 +31,13 @@ namespace ScannerBase
             string fName = file.Substring(sourceDir.Length + 1);
             string fNameNameWithoutExtension = Path.GetFileNameWithoutExtension(file);
 
-            if (format == ImgFormt_JPG_or_PNG.JPG)
+            if (format == ImgFormt2.JPG)
             {
                 string result = Path.Combine(backupDir, fName);
                 File.Copy(Path.Combine(sourceDir, fName), result, true);
                 return result;
             }
-            else if (format == ImgFormt_JPG_or_PNG.PNG)
+            else if (format == ImgFormt2.PNG)
             {
                 string result = Path.Combine(backupDir, fNameNameWithoutExtension + ".PNG");
                 File.Copy(Path.Combine(sourceDir, fName), Path.Combine(backupDir, fNameNameWithoutExtension + ".PNG"), true);
@@ -68,17 +68,17 @@ namespace ScannerBase
 
             return _imageDpi;
         }
-        public ImgFormt_JPG_or_PNG randomFormat()
+        public ImgFormt2 randomFormat()
         {
             Random random = new Random();
             int imageDPI = random.Next(1, 3);
             switch (imageDPI)
             {
                 case 1:
-                    _imageFormat = ImgFormt_JPG_or_PNG.JPG;
+                    _imageFormat = ImgFormt2.JPG;
                     break;
                 case 2:
-                    _imageFormat = ImgFormt_JPG_or_PNG.PNG;
+                    _imageFormat = ImgFormt2.PNG;
                     break;
             }
             return _imageFormat;

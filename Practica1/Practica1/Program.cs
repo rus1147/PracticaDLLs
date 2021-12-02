@@ -13,6 +13,7 @@ namespace Practica1
     {
         static void Main(string[] args)
         {
+
             Random random = new Random();
             int quantity = random.Next(0, 9);
             Console.WriteLine("Ejecutar item 1 o item 2, ingrese 1/ 2 : ");
@@ -24,18 +25,12 @@ namespace Practica1
 
                 
                 //scannerA. calidadImagen = scannerA.randomDPI();
-                
-                if (quantity == 0)
-                {
-                    Console.WriteLine(scannerA.statusError);
-                }
-                else if (scannerA.GetStatus() == scannerA.statusOk)
-                {
+              
                     int cantidadScanns = quantity;
                     Console.WriteLine("Cantidad de escaneos solitados es de: {0}", cantidadScanns);
                     scannerA.MultiScan(scannerA.randomFormat(), scannerA.randomDPI(), cantidadScanns);
                     scannerA.Stop();
-                }
+                
                 else
                 {
                     Console.WriteLine(scannerA.statusError);
