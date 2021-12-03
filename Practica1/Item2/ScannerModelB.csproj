@@ -46,11 +46,5 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ScannerNotInitException.cs" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Scanner\ScannerBase.csproj">
-      <Project>{1999153d-4a16-4aa2-8d8f-848e92bc8e58}</Project>
-      <Name>ScannerBase</Name>
-    </ProjectReference>
-  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -41,8 +41,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Scanner.cs" />
+    <Compile Include="Abstraccion\Scanner.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="WrapperScanneModelB.cs" />
+    <Compile Include="Wrappers\WrapperScanneModelA.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Item1\ScannerModelA.csproj">
+      <Project>{46f604b3-cb14-43c4-afef-7bec30292f57}</Project>
+      <Name>ScannerModelA</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Item2\ScannerModelB.csproj">
+      <Project>{29b44f5a-7f20-4243-848d-66365003dc24}</Project>
+      <Name>ScannerModelB</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

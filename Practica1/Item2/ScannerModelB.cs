@@ -4,7 +4,6 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using ScannerBase;
 using System.Drawing;
 
 namespace ScannerModelB
@@ -13,11 +12,12 @@ namespace ScannerModelB
     {
         public enum ImgFormtB { DPI_100, DPI_200, DPI_300 }
         public enum ResolutionFormat { JPG, PNG }
+        //public ResolutionFormat Resolucion { get; set; }
         public ResolutionFormat ImageRes { get; set; }
         internal bool estadoScannerB = false;
-        string CarpetaCheques = AppDomain.CurrentDomain.BaseDirectory + "\\Img_Cheques\\";
+        public string CarpetaCheques = AppDomain.CurrentDomain.BaseDirectory + "\\Img_Cheques\\";
         private int CM7Lenght = 29;
-        internal string DestinationDirectory { get; set; } = AppDomain.CurrentDomain.BaseDirectory;
+        public string DestinationDirectory { get; set; } = AppDomain.CurrentDomain.BaseDirectory;
 
         public byte[] ScanB(out string CM7C)
         {
@@ -32,7 +32,7 @@ namespace ScannerModelB
                 using (MemoryStream  ms = new MemoryStream())
                 {
                     string sourceDir = CarpetaCheques + RandomDPI().ToString();
-                    string backupDir = DestinationDirectory + "\\" + RandomDPI().ToString();
+                    //string backupDir = DestinationDirectory + "\\" + RandomDPI().ToString();
 
                     string[] picList = Directory.GetFiles(sourceDir);
 

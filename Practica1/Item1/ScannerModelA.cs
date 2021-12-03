@@ -1,18 +1,47 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
-using ScannerBase;
 namespace ScannerModelA
 {
     public class ScannerA
     {
         public enum ResolutionFormat { DPI_200, DPI_300 }
         public enum ImgFormtA { JPG, PNG }
+        public  ResolutionFormat ImageRes { get; set; } 
+
         public string DestinationDirectory { get; set; } = AppDomain.CurrentDomain.BaseDirectory;
 
-        string CarpetaCheques = AppDomain.CurrentDomain.BaseDirectory + "\\Img_Cheques\\";
+        public string CarpetaCheques = AppDomain.CurrentDomain.BaseDirectory + "\\Img_Cheques\\";
 
+        public string ScanA(ImgFormtA format, ResolutionFormat reso)
+        {
 
+            string sourceDir = CarpetaCheques + reso.ToString();
+            string backupDir = DestinationDirectory + "\\" + reso.ToString();
+
+            string[] picList = Directory.GetFiles(sourceDir, "*.JPG");
+            Random r = new Random();
+            int index= r.Next(0,10);
+            string file = picList[index];
+            string fName = file.Substring(sourceDir.Length + 1);
+            string fNameNameWithoutExtension = Path.GetFileNameWithoutExtension(file);
+
+            if (format == ImgFormtA.JPG)
+            {
+                string source = Path.Combine(sourceDir, fName);
+                string result = Path.Combine(backupDir, fName);
+                File.Copy(source, result, true);
+                return result;
+            }
+            else if (format == ImgFormtA.PNG)
+            {
+                string source = Path.Combine(sourceDir, fName);
+                string result = Path.Combine(backupDir, fNameNameWithoutExtension + ".PNG");
+                File.Copy(source, result, true);
+                return result;
+            }
+            return null;
+        }
         public string ScanA(ImgFormtA format, ResolutionFormat reso, int quantity)
         {
 
@@ -27,14 +56,16 @@ namespace ScannerModelA
 
             if (format == ImgFormtA.JPG)
             {
+                string source = Path.Combine(sourceDir, fName);
                 string result = Path.Combine(backupDir, fName);
-                File.Copy(Path.Combine(sourceDir, fName), result, true);
+                File.Copy(source, result, true);
                 return result;
             }
             else if (format == ImgFormtA.PNG)
             {
+                string source = Path.Combine(sourceDir, fName);
                 string result = Path.Combine(backupDir, fNameNameWithoutExtension + ".PNG");
-                File.Copy(Path.Combine(sourceDir, fName), Path.Combine(backupDir, fNameNameWithoutExtension + ".PNG"), true);
+                File.Copy(source, result, true);
                 return result;
             }
             return null;
@@ -42,13 +73,16 @@ namespace ScannerModelA
 
         public string[] MultiScan(ImgFormtA format, ResolutionFormat resolution, int quantity)
         {
-            List<string> lista = new List<string>();
+            string[] lista = new string[quantity];
+
+            //List<string> lista = new List<string>();
             for (int i = 0; i < quantity; i++)
             {
-                lista.Add((ScanA(format, resolution, i)));
+                lista[i] = ScanA(format, resolution, i);
+                //    lista.Add((ScanA(format, resolution, i)));
             }
-            String[] result = lista.ToArray();
-            return result;
+            //String[] result = lista.ToArray();
+            return lista;
         }
 
         public void Stop()
@@ -84,7 +118,10 @@ namespace ScannerModelA
                 return ResolutionFormat.DPI_300;
             }
         }
-
+        public bool Test()
+        {
+            return true;
+        }
 
         public ImgFormtA randomFormat()
         {
