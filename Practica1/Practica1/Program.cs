@@ -16,65 +16,44 @@ namespace Practica1
 
             Random random = new Random();
             int quantity = random.Next(0, 9);
-            Console.WriteLine("Ejecutar item 1 o item 2, ingrese 1/ 2 : ");
-            string item= Console.ReadLine();
+            Console.WriteLine("Ejecutar ScannerA (1) o ScannerB (2), ingrese 1/ 2 : ");
+            string item = Console.ReadLine();
             if (item == "1")
             {
                 ScannerA scannerA = new ScannerA();
 
+                scannerA.resolucion = scannerA.RandomDPI();
+                int cantidadScanns = quantity;
 
+                Console.WriteLine("Cantidad de escaneos solitados es de: {0}", cantidadScanns);
+                try
+                {
+                    scannerA.MultiScan(scannerA.randomFormat(), scannerA.RandomDPI(), cantidadScanns);
+                    scannerA.Stop();
+                }
+                catch
+                {
+                    throw new Exception("No se pudo digitalizar: Scanner A");
+                }
+            }
+            else
+            {
+                ScannerB scannerB = new ScannerB();
 
-                //scannerA. calidadImagen = scannerA.randomDPI();
+                scannerB.Initialize();
+                string imagen;
 
-                //            int cantidadScanns = quantity;
-                //            Console.WriteLine("Cantidad de escaneos solitados es de: {0}", cantidadScanns);
-                //            scannerA.MultiScan(scannerA.randomFormat(), scannerA.randomDPI(), cantidadScanns);
-                //            scannerA.Stop();
-
-                //        else
-                //        {
-                //            Console.WriteLine(scannerA.statusError);
-                //        }
-                //        Console.WriteLine("Desea borrar imagenes scanneadas ? \n y/n ?");
-                //        string borrar = Console.ReadLine();
-                //        if (borrar == "y")
-                //        {
-                //            scannerA.DeleteImagenes(scannerA.randomDPI());
-                //            Console.WriteLine("Imagenes eliminadas");
-                //        }
-                //    }
-                //    else
-                //    {
-                //        ScannerB scannerB = new ScannerB();
-
-                //        scannerB.Initialize();
-
-                //        if (quantity == 0)
-                //        {
-                //            Console.WriteLine(scannerB.statusError);
-                //        }
-                //        else if (scannerB.TestScan())
-                //        {
-                //            int cantidadScanns = quantity;
-                //            Console.WriteLine("Cantidad de escaneos solitados es de: {0}", cantidadScanns);
-                //            scannerB.MultiScan(scannerB.randomFormat(), scannerB.randomDPI(), cantidadScanns);
-                //            scannerB.Close();
-                //        }
-                //        else
-                //        {
-                //            Console.WriteLine(scannerB.statusError);
-                //        }
-
-                //        //No se porque no funciona, usa el valor borrar2 el primer readline que tiene la opcion 2
-                //        Console.WriteLine("Desea borrar imagenes scanneadas ? \n y/n ?");
-                //        string borrar2 =  Console.ReadLine();
-                //        if (borrar2 == "y")
-                //        {
-                //            scannerB.DeleteImagenes(scannerB.randomDPI());
-                //            Console.WriteLine("Imagenes eliminadas");
-                //        }
-
+                if (scannerB.TestScan())
+                {
+                    scannerB.ScanB(out imagen);
+                    Console.WriteLine(imagen);
+                    scannerB.Close();
+                }
+                else
+                {
+                    throw new Exception("No se puedo digitalizar");
+                }
             }
         }
-        }
+    }
 }

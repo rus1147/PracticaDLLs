@@ -6,25 +6,30 @@ using System.Threading.Tasks;
 using ScannerModelA;
 using ScannerBase;
 using ScannerBase.Abstraccion;
-
+using ScannerBase.Transformador;
 namespace ScannerBase.Wrappers
 {
     public class WrapperScanneModelA : Scanner
     {
 
         private ScannerA _scanner;
-        public WrapperScanneModelA(string destinationDirectory, ResolutionFormat resolucion)
+        public WrapperScanneModelA(string destinationDirectory, Resolution resolucion)
         {
             _scanner = new ScannerA();
             _scanner.DestinationDirectory = destinationDirectory;
-            _scanner.ImageRes = (ScannerA.ResolutionFormat)resolucion; 
+            _scanner.resolucion = (ScannerA.Resolucion)resolucion; 
         }   
 
-        public override ResolutionFormat Resolucion { get; set; }       
+        public override Resolution Resolucion { get; set; }       
         public override void Digitalizar()
         {
-            ResolutionFormat resolution = this.Resolucion;
-            _scanner.ScanA((ScannerA.ImgFormtA)ImgFormt.PNG, (ScannerA.ResolutionFormat)resolution);
+            Resolution resolution = TransformadorFormatos<Resolution>.ConvertToEnum(this.Resolucion.ToString());
+            _scanner.ScanA((ScannerA.ResolutionFormat)ResolutionFormat.PNG, (ScannerA.Resolucion)resolution);
+        }
+        public void MultiDigitalizar(int quantity)
+        {
+            Resolution resolution = TransformadorFormatos<Resolution>.ConvertToEnum(this.Resolucion.ToString());
+            _scanner.MultiScan((ScannerA.ResolutionFormat)ResolutionFormat.PNG, (ScannerA.Resolucion)resolution, quantity);
         }
         public override void Detener()
         {

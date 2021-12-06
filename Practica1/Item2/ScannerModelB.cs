@@ -10,22 +10,23 @@ namespace ScannerModelB
 {
     public class ScannerB
     {
-        public enum ImgFormtB { DPI_100, DPI_200, DPI_300 }
+        public enum Resolucion { DPI_100, DPI_200, DPI_300 }
         public enum ResolutionFormat { JPG, PNG }
-        //public ResolutionFormat Resolucion { get; set; }
+        public Resolucion resolucion { get; set; }
         public ResolutionFormat ImageRes { get; set; }
         internal bool estadoScannerB = false;
-        public string CarpetaCheques = AppDomain.CurrentDomain.BaseDirectory + "\\Img_Cheques\\";
-        private int CM7Lenght = 29;
-        public string DestinationDirectory { get; set; } = AppDomain.CurrentDomain.BaseDirectory;
+        public string DestinationDirectory { get; set; } = $"C:\\Users\\Ruslan\\Programacion\\academina BNA\\Practica1\\PracticaDLLs\\Practica1\\DestinoImg";
 
+        public string CarpetaCheques = $"C:\\Users\\Ruslan\\Programacion\\academina BNA\\Practica1\\PracticaDLLs\\Practica1\\Img_Cheques\\";
+        private int CM7Lenght = 29;
+       
         public byte[] ScanB(out string CM7C)
         {
             CM7C = null;
 
             if (!estadoScannerB)
             {
-                throw new ScannerNotInitException("El scanner no ha sido inicializado");
+                throw new Exception("El scanner no ha sido inicializado");
             }
             try
             {
@@ -41,15 +42,17 @@ namespace ScannerModelB
                     //tomo una imagen random
                     string file = picList[image];
                     //Tomo el nombre del archivo, verifico que tenga 29 caracteres
-
-                    if(Path.GetFileNameWithoutExtension(file).Length== CM7Lenght) { 
+                   
+                    string fileSinDireccion = Path.GetFileNameWithoutExtension(file);
+                    if (fileSinDireccion.Length== CM7Lenght+2) { 
                         //asigno al CM7C el nombre del archivo
                     CM7C = Path.GetFileNameWithoutExtension(file);
                     }
                     
                     Image newImage = Image.FromFile(file);
                     //Guardo la imagen en memoria
-                    newImage.Save(file, System.Drawing.Imaging.ImageFormat.Jpeg);
+                    ////FALLA el guardado en memoria
+                  //  newImage.Save(file, System.Drawing.Imaging.ImageFormat.Jpeg);
                     
                     // devuelvo un array de lo que se encuentra en memoria
                     return ms.ToArray();
@@ -131,22 +134,22 @@ namespace ScannerModelB
         //    }
         //}
 
-        internal ImgFormtB RandomDPI()
+        internal Resolucion RandomDPI()
         {
             Random random = new Random();
             int imageDPI = random.Next(0, 6);
             if (imageDPI > 0 && imageDPI < 2)
             {
-                return ImgFormtB.DPI_100;
+                return Resolucion.DPI_100;
             }
             else if (imageDPI > 2 && imageDPI < 4)
             {
 
-                return ImgFormtB.DPI_200;
+                return Resolucion.DPI_200;
             }
             else
             {
-                return ImgFormtB.DPI_300;
+                return Resolucion.DPI_300;
             }
         }
        /* public Image byteArrayToImage(byte[] byteArrayIn)

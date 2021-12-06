@@ -6,9 +6,9 @@ namespace ScannerBase.Abstraccion
 {
     public abstract class Scanner
     {
-        public enum ResolutionFormat { DPI_100, DPI_200, DPI_300 }
-        public enum ImgFormt { JPG, PNG }
-        public virtual ResolutionFormat Resolucion { get; set; }
+        public enum Resolution { DPI_100, DPI_200, DPI_300 }
+        public enum ResolutionFormat { JPG, PNG }
+        public virtual Resolution Resolucion { get; set; }
         public abstract void Digitalizar();
         public abstract void Detener();
         public abstract void Test();
