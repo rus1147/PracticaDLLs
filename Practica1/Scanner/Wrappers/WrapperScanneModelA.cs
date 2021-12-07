@@ -17,19 +17,19 @@ namespace ScannerBase.Wrappers
         {
             _scanner = new ScannerA();
             _scanner.DestinationDirectory = destinationDirectory;
-            _scanner.resolucion = (ScannerA.Resolucion)resolucion; 
+            this.Resolucion = resolucion; 
         }   
 
         public override Resolution Resolucion { get; set; }       
         public override void Digitalizar()
         {
-            Resolution resolution = TransformadorFormatos<Resolution>.ConvertToEnum(this.Resolucion.ToString());
-            _scanner.ScanA((ScannerA.ResolutionFormat)ResolutionFormat.PNG, (ScannerA.Resolucion)resolution);
+            ScannerA.ImageResolution resolution = TransformadorFormatos<ScannerA.ImageResolution>.ConvertToEnum(this.Resolucion.ToString());
+            _scanner.ScanA(ScannerA.ImageFormat.PNG, resolution);
         }
         public void MultiDigitalizar(int quantity)
         {
-            Resolution resolution = TransformadorFormatos<Resolution>.ConvertToEnum(this.Resolucion.ToString());
-            _scanner.MultiScan((ScannerA.ResolutionFormat)ResolutionFormat.PNG, (ScannerA.Resolucion)resolution, quantity);
+            ScannerA.ImageResolution resolution = TransformadorFormatos<ScannerA.ImageResolution>.ConvertToEnum(this.Resolucion.ToString());
+            _scanner.MultiScan(ScannerA.ImageFormat.PNG, resolution, quantity);
         }
         public override void Detener()
         {

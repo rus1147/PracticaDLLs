@@ -22,7 +22,7 @@ namespace Practica1
             {
                 ScannerA scannerA = new ScannerA();
 
-                scannerA.resolucion = scannerA.RandomDPI();
+             
                 int cantidadScanns = quantity;
 
                 Console.WriteLine("Cantidad de escaneos solitados es de: {0}", cantidadScanns);

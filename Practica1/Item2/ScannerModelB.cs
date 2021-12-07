@@ -11,9 +11,9 @@ namespace ScannerModelB
     public class ScannerB
     {
         public enum Resolucion { DPI_100, DPI_200, DPI_300 }
-        public enum ResolutionFormat { JPG, PNG }
+    
         public Resolucion resolucion { get; set; }
-        public ResolutionFormat ImageRes { get; set; }
+        
         internal bool estadoScannerB = false;
         public string DestinationDirectory { get; set; } = $"C:\\Users\\Ruslan\\Programacion\\academina BNA\\Practica1\\PracticaDLLs\\Practica1\\DestinoImg";
 
@@ -33,7 +33,6 @@ namespace ScannerModelB
                 using (MemoryStream  ms = new MemoryStream())
                 {
                     string sourceDir = CarpetaCheques + RandomDPI().ToString();
-                    //string backupDir = DestinationDirectory + "\\" + RandomDPI().ToString();
 
                     string[] picList = Directory.GetFiles(sourceDir);
 
@@ -51,8 +50,7 @@ namespace ScannerModelB
                     
                     Image newImage = Image.FromFile(file);
                     //Guardo la imagen en memoria
-                    ////FALLA el guardado en memoria
-                  //  newImage.Save(file, System.Drawing.Imaging.ImageFormat.Jpeg);
+                    newImage.Save(DestinationDirectory+ "\\"+RandomDPI().ToString()+ "\\"+CM7C +".JPG", System.Drawing.Imaging.ImageFormat.Jpeg);
                     
                     // devuelvo un array de lo que se encuentra en memoria
                     return ms.ToArray();

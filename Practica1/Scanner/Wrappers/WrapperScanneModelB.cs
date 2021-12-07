@@ -9,6 +9,7 @@ using ScannerBase.Abstraccion;
 using System.Drawing;
 using System.IO;
 using System.Drawing.Imaging;
+using ScannerBase.Transformador;
 
 namespace ScannerBase.Wrappers
 {
@@ -19,11 +20,13 @@ namespace ScannerBase.Wrappers
         {
             _scanner = new ScannerB();
             _scanner.DestinationDirectory = destinationDirectory;
-            _scanner.ImageRes = (ScannerB.ResolutionFormat)resolucion;
+            this.Resolucion = resolucion;
             
         }
 
-        public override Resolution Resolucion { get; set; }
+        public override Resolution Resolucion { 
+            get => TransformadorFormatos<ScannerB.Resolucion>.ConvertToResolucion(_scanner.resolucion);
+            set => _scanner.resolucion= TransformadorFormatos<ScannerB.Resolucion>.ConvertToEnum(value.ToString()); }
         public override void Digitalizar()
         {
             string CM7;
